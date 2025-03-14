@@ -35,17 +35,17 @@ public class HttpRequest {
 		data.put("name", "John");
 		data.put("job", "Manager");
 		
-		id = given()
+		given()
 			.contentType("application/json")
 			.body(data)
 		.when()
 			.post("https://reqres.in/api/users")
-			.jsonPath().getInt("id");
+			//.jsonPath().getInt("id");
 		
-//		.then()
-//			.statusCode(201)
-//			.body("name", equalTo("John"))
-//			.log().all();
+		.then()
+			.statusCode(201)
+			.body("name", equalTo("John"))
+			.log().all();
 	}
 	
 	@Test(priority=2, dependsOnMethods = {"postUser"})
